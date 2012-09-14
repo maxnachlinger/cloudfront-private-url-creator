@@ -3,7 +3,7 @@
 Creates and signs private Cloudfront Urls.
 
 ## Installation:
-```npm install git+ssh://git@github.com:Mindflash/cloudfront-private-url-creator.git```
+```npm install cloudfront-private-url-creator```
 
 ## Usage:
 ```javascript
