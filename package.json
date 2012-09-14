@@ -1,6 +1,6 @@
 {
   "author": "Max Nachlinger <max.nachlinger@gmail.com>",
-  "name": "cloudfornt-private-url-creator",
+  "name": "cloudfront-private-url-creator",
   "description": "Creates private Cloudfront Urls",
   "homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
   "keywords": ["cloudfront"],
