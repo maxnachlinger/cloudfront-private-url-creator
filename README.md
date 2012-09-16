@@ -9,7 +9,6 @@ npm install cloudfront-private-url-creator
 
 ## Usage:
 ```javascript
-
 var fs = require('fs');
 var cf = require('cloudfront-private-url-creator');
 
@@ -43,13 +42,12 @@ loadPrivateKey(function privateKeyCb(err,key) {
 
 function loadPrivateKey(cb) {
   fs.realpath(privateKeyPath, function (err, resolvedPath) {
-    if (err) cb(err);
+    if (err) return cb(err);
 
     fs.readFile(resolvedPath, function (err, data) {
-      if (err) cb(err);
+      if (err) return cb(err);
       cb(null, data);
     });
   });
 }
-
 ```
