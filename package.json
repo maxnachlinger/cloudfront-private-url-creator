@@ -1,27 +1,27 @@
 {
-  "author": "Max Nachlinger <max.nachlinger@gmail.com>",
-  "name": "cloudfront-private-url-creator",
-  "description": "Creates private Cloudfront Urls",
-  "homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
-  "keywords": ["cloudfront"],
-  "version": "1.0.0",
-  "bugs": {
-    "url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
+  "author":"Max Nachlinger <max.nachlinger@gmail.com>",
+  "name":"cloudfront-private-url-creator",
+  "description":"Creates private Cloudfront Urls",
+  "homepage":"https://github.com/maxnachlinger/cloudfront-private-url-creator",
+  "keywords":["cloudfront"],
+  "version":"1.0.1",
+  "bugs":{
+    "url":"https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
   },
-  "contributors": [
+  "contributors":[
     "Max Nachlinger <max.nachlinger@gmail.com>"
   ],
-  "licenses": {
-    "type": "MIT"
+  "licenses":{
+    "type":"MIT"
   },
-  "main": "lib/",
-  "dependencies": {},
-  "devDependencies": {},
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
+  "main":"lib/",
+  "dependencies":{},
+  "devDependencies":{},
+  "optionalDependencies":{},
+  "engines":{
+    "node":"*"
   },
-  "publishConfig": {
-    "registry": "https://registry.npmjs.com/"
+  "publishConfig":{
+    "registry":"https://registry.npmjs.com/"
   }
 }
