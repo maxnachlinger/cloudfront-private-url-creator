@@ -14,24 +14,24 @@ var cf = require('cloudfront-private-url-creator');
 
 var urlToSign = 'https://somedistro.cloudfront.net/somefolder/someFile';
 
-// date when the private url will expire
-var expires = new Date();
-expires.setYear(expires.getFullYear()+1);
+// date when the private url will expire (1 hour from now in this case)
+var dateLessThan = new Date();
+dateLessThan.setHours(dateLessThan.getHours()+1);
 
 var keyPairId = 'yourKeyPaidId';
 var privateKeyPath = './yourKey.pem';
 
-loadPrivateKey(function privateKeyCb(err,key) {
+loadPrivateKey(function privateKeyCb(err,keyContents) {
   if(err) {
     console.error(err);
     return;
   }
   var config = {
-    privateKey: key,
+    privateKey: keyContents,
     keyPairId: keyPairId,
-    expires: expires
+    dateLessThan: dateLessThan
   };
-  cf.signUrl(url, config, function signUrlCb(err,signedUrl) {
+  cf.signUrl(urlToSign, config, function signUrlCb(err,signedUrl) {
     if(err) {
       console.error(err);
       return;

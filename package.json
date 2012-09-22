@@ -4,7 +4,7 @@
   "description": "Creates private Cloudfront Urls",
   "homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
   "keywords": ["cloudfront"],
-  "version": "0.0.4",
+  "version": "0.0.5",
   "bugs": {
     "url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
   },
