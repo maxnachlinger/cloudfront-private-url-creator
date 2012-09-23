@@ -1,5 +1,7 @@
 var fs = require('fs');
 var path = require('path');
+var querystring = require('querystring');
+var assert = require('assert');
 
 var common = exports;
 
@@ -18,4 +20,11 @@ common.loadPrivateKey = function(loadPrivateKeyCb) {
       loadPrivateKeyCb(null, privateKey);
     });
   });
+};
+
+common.queryStringHasKeysValues = function(url, keysValues) {
+  var queryStringKeysValues = querystring.parse(url.slice(url.indexOf('?')+1));
+  for(var key in keysValues) {
+    assert.equal(keysValues.key, queryStringKeysValues.key);
+  }
 };
