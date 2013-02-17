@@ -2,6 +2,8 @@
 
 Creates and signs private Cloudfront Urls.
 
+[![Build Status](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator.png?branch=master)](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator)
+
 ## Installation:
 ```
 npm install cloudfront-private-url-creator

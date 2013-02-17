@@ -1,27 +1,35 @@
 {
-  "author":"Max Nachlinger <max.nachlinger@gmail.com>",
-  "name":"cloudfront-private-url-creator",
-  "description":"Creates private Cloudfront Urls",
-  "homepage":"https://github.com/maxnachlinger/cloudfront-private-url-creator",
-  "keywords":["cloudfront"],
-  "version":"1.0.4",
-  "bugs":{
-    "url":"https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
-  },
-  "contributors":[
-    "Max Nachlinger <max.nachlinger@gmail.com>"
-  ],
-  "licenses":{
-    "type":"MIT"
-  },
-  "main":"lib/",
-  "dependencies":{},
-  "devDependencies":{},
-  "optionalDependencies":{},
-  "engines":{
-    "node":"*"
-  },
-  "publishConfig":{
-    "registry":"https://registry.npmjs.com/"
-  }
+	"author": "Max Nachlinger <max.nachlinger@gmail.com>",
+	"name": "cloudfront-private-url-creator",
+	"description": "Creates private Cloudfront Urls",
+	"homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
+	"repository": {
+		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator.git"
+	},
+	"keywords": ["cloudfront"],
+	"version": "1.0.41",
+	"bugs": {
+		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
+	},
+	"contributors": [
+		"Max Nachlinger <max.nachlinger@gmail.com>"
+	],
+	"licenses": {
+		"type": "MIT"
+	},
+	"scripts": {
+		"test": "node tests/tests.js"
+	},
+	"main": "lib/",
+	"dependencies": {},
+	"devDependencies": {
+		"tap": "~0.4.0"
+	},
+	"optionalDependencies": {},
+	"engines": {
+		"node": "*"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.com/"
+	}
 }
