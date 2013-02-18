@@ -2,6 +2,16 @@ var test = require('tap').test;
 var common = require('./common.js');
 var cf = require('..');
 
+var privateKey;
+test('Setup', function (t) {
+	common.loadPrivateKey(function (err, key) {
+		t.notOk(err, "Loads test private key without error");
+		t.ok(key, "Test private key is not empty");
+		privateKey = key;
+		t.end();
+	});
+});
+
 /*
  Using example data and output from:
  http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/RestrictingAccessPrivateContent.html#CannedPolicy
@@ -10,7 +20,7 @@ test('Canned policy works', function (t) {
 	var urlToSign = 'http://d604721fxaaqy9.cloudfront.net/horizon.jpg?large=yes&license=yes';
 
 	var config = {
-		privateKey: '',
+		privateKey: privateKey,
 		keyPairId: 'PK12345EXAMPLE',
 		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT'))
 	};
@@ -21,15 +31,11 @@ test('Canned policy works', function (t) {
 		'Key-Pair-Id': 'PK12345EXAMPLE'
 	};
 
-	common.loadPrivateKey(function (err, key) {
-		t.notOk(err, "Loads test private key");
-		config.privateKey = key;
 
-		cf.signUrl(urlToSign, config, function signUrlCb(err, signedUrl) {
-			t.notOk(err, "Signs the URL");
-			t.ok(common.queryStringHasKeysValues(signedUrl, expectedQueryString),"URL is signed as expected");
-			t.end();
-		});
+	cf.signUrl(urlToSign, config, function signUrlCb(err, signedUrl) {
+		t.notOk(err, "Signs the URL");
+		t.ok(common.queryStringHasKeysValues(signedUrl, expectedQueryString), "URL is signed as expected");
+		t.end();
 	});
 });
 
@@ -41,7 +47,7 @@ test('Custom policy works', function (t) {
 	var urlToSign = 'http://d604721fxaaqy9.cloudfront.net/training/orientation.avi';
 
 	var config = {
-		privateKey: '',
+		privateKey: privateKey,
 		keyPairId: 'PK12345EXAMPLE',
 		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT')),
 		ipAddress: '145.168.143.0/24'
@@ -53,14 +59,9 @@ test('Custom policy works', function (t) {
 		'Key-Pair-Id': 'PK12345EXAMPLE'
 	};
 
-	common.loadPrivateKey(function (err, key) {
-		t.notOk(err, "Loads test private key");
-		config.privateKey = key;
-
-		cf.signUrl(urlToSign, config, function signUrlCb(err, signedUrl) {
-			t.notOk(err, "Signs the URL");
-			t.ok(common.queryStringHasKeysValues(signedUrl, expectedQueryString),"URL is signed as expected");
-			t.end();
-		});
+	cf.signUrl(urlToSign, config, function signUrlCb(err, signedUrl) {
+		t.notOk(err, "Signs the URL");
+		t.ok(common.queryStringHasKeysValues(signedUrl, expectedQueryString), "URL is signed as expected");
+		t.end();
 	});
 });
