@@ -5,7 +5,7 @@
 	"homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
 	"repository": {
 		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator.git",
-		"type": "git",
+		"type": "git"
 	},
 	"keywords": ["cloudfront"],
 	"version": "1.0.41",
