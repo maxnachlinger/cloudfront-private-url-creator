@@ -1,3 +1,4 @@
+'use strict';
 var test = require('tap').test;
 var common = require('./common.js');
 var cf = require('..');
