@@ -53,8 +53,8 @@ function loadPrivateKey(cb) {
   });
 }
 ```
-## Help
-For debugging issues with streaming distributions, Amazon provides a helpful [Video Streaming Diagnostic Client ](http://d1k5ny0m6d4zlj.cloudfront.net/diag/CFStreamingDiag.html)
+## TODO
+Support signed, streaming, RTMP uris.
 
 ## License
 
