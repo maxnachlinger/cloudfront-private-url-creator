@@ -53,7 +53,8 @@ test('RTMP Canned policy works', function (t) {
 	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
 		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
 		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
-		t.ok(!!~signedUrl.indexOf("rtmp:"), "Preserves rtmp: protocol in signed URL");
+		t.ok(~signedUrl.indexOf("rtmp:"), "Preserves rtmp: protocol in signed URL");
+		t.ok(~signedUrl.indexOf("?test=value"), "Preserves query string protocol in signed URL");
 		t.end();
 	});
 });
