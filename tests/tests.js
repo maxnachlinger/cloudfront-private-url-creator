@@ -41,25 +41,6 @@ test('Canned policy works', function (t) {
 	});
 });
 
-test('RTMP Canned policy works', function (t) {
-	var resource = 'rtmp://s376mwn0j9d1pr.cloudfront.net/cfx/st/0.mp4?test=value';
-
-	var config = {
-		privateKey: privateKey,
-		keyPairId: 'APKAIMH6MOIQIHVDWN3A',
-		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT'))
-	};
-
-	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
-		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
-		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
-		t.ok(~signedUrl.indexOf("rtmp:"), "Preserves rtmp: protocol in signed URL");
-		t.ok(~signedUrl.indexOf("?test=value"), "Preserves query string protocol in signed URL");
-		t.ok(~signedUrl.indexOf("/cfx/st/"), "Preserves /cfx/st/ path in signed URL");
-		t.end();
-	});
-});
-
 /*
  Using example data and output from:
  http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/RestrictingAccessPrivateContent.html#CustomPolicy
@@ -84,6 +65,44 @@ test('Custom policy works', function (t) {
 		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
 		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
 		common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
+		t.end();
+	});
+});
+
+test('HTTP url tests', function (t) {
+	var resource = 'http://d604721fxaaqy9.cloudfront.net/some/path/horizon.jpg?large=yes&license=yes';
+
+	var config = {
+		privateKey: privateKey,
+		keyPairId: 'PK12345EXAMPLE',
+		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT'))
+	};
+
+	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
+		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+		t.ok(~signedUrl.indexOf("http://"), "Preserves protocol in signed URL");
+		t.ok(~signedUrl.indexOf("?large=yes&license=yes"), "Preserves query string in signed URL");
+		t.ok(~signedUrl.indexOf("/some/path/"), "Preserves path in signed URL");
+		t.end();
+	});
+});
+
+test('RTMP url tests', function (t) {
+	var resource = 'rtmp://s376mwn0j9d1pr.cloudfront.net/cfx/st/0.mp4?test=value';
+
+	var config = {
+		privateKey: privateKey,
+		keyPairId: 'APKAIMH6MOIQIHVDWN3A',
+		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT'))
+	};
+
+	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
+		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+		t.ok(~signedUrl.indexOf("rtmp://"), "Preserves protocol in signed URL");
+		t.ok(~signedUrl.indexOf("?test=value"), "Preserves query string in signed URL");
+		t.ok(~signedUrl.indexOf("/cfx/st/"), "Preserves path in signed URL");
 		t.end();
 	});
 });
