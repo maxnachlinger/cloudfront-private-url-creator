@@ -53,9 +53,6 @@ function loadPrivateKey(cb) {
   });
 }
 ```
-## TODO
-Support signed, streaming, RTMP uris.
-
 ## License
 
 [The MIT License](http://opensource.org/licenses/MIT)
