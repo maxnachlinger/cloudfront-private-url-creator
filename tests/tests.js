@@ -55,6 +55,7 @@ test('RTMP Canned policy works', function (t) {
 		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
 		t.ok(~signedUrl.indexOf("rtmp:"), "Preserves rtmp: protocol in signed URL");
 		t.ok(~signedUrl.indexOf("?test=value"), "Preserves query string protocol in signed URL");
+		t.ok(~signedUrl.indexOf("/cfx/st/"), "Preserves /cfx/st/ path in signed URL");
 		t.end();
 	});
 });
