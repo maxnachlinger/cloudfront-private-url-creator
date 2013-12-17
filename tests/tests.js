@@ -1,4 +1,5 @@
 'use strict';
+var util = require('util');
 var test = require('tap').test;
 var common = require('./common.js');
 var cf = require('..');
@@ -18,7 +19,7 @@ test('Setup', function (t) {
  http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/RestrictingAccessPrivateContent.html#CannedPolicy
  */
 test('Canned policy works', function (t) {
-	var urlToSign = 'http://d604721fxaaqy9.cloudfront.net/horizon.jpg?large=yes&license=yes';
+	var resource = 'http://d604721fxaaqy9.cloudfront.net/horizon.jpg?large=yes&license=yes';
 
 	var config = {
 		privateKey: privateKey,
@@ -27,15 +28,32 @@ test('Canned policy works', function (t) {
 	};
 
 	var expectedQueryString = {
-		'Expires': 1325376000, // unix-timestamp for Sun, 1 Jan 2012 00:00:00 GMT
+		'Expires': (config.dateLessThan.getTime() / 1000).toString(),
 		'Signature': 'hO7oLKtCJQzsopeEB3nldOp2PvcVOoa9hdIhxP0y1tNUTEKVV3YhCFG-VCGZXDPbSQJnSoztS7j1w5s6GNorvgP4zG3P0WL9c5xBw0WwB8YHnmcvh8PYJ8nNm-CuHkCbuSkOCM2j87bglM1b1mb6XD6Jh4Ot9jb87NR9D1FSB6k_',
 		'Key-Pair-Id': 'PK12345EXAMPLE'
 	};
 
+	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
+		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+		common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
+		t.end();
+	});
+});
 
-	cf.signUrl(urlToSign, config, function signUrlCb(err, signedUrl) {
-		t.notOk(err, "Signs the URL");
-		t.ok(common.queryStringHasKeysValues(signedUrl, expectedQueryString), "URL is signed as expected");
+test('RTMP Canned policy works', function (t) {
+	var resource = 'rtmp://s376mwn0j9d1pr.cloudfront.net/0.mp4';
+
+	var config = {
+		privateKey: privateKey,
+		keyPairId: 'APKAIMH6MOIQIHVDWN3A',
+		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT'))
+	};
+
+	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
+		console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+      t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+		t.ok(signedUrl, "Signs the submitted resource, received: " + util.inspect(signedUrl));
 		t.end();
 	});
 });
@@ -45,7 +63,7 @@ test('Canned policy works', function (t) {
  http://docs.amazonwebservices.com/AmazonCloudFront/latest/DeveloperGuide/RestrictingAccessPrivateContent.html#CustomPolicy
  */
 test('Custom policy works', function (t) {
-	var urlToSign = 'http://d604721fxaaqy9.cloudfront.net/training/orientation.avi';
+	var resource = 'http://d604721fxaaqy9.cloudfront.net/training/orientation.avi';
 
 	var config = {
 		privateKey: privateKey,
@@ -60,9 +78,10 @@ test('Custom policy works', function (t) {
 		'Key-Pair-Id': 'PK12345EXAMPLE'
 	};
 
-	cf.signUrl(urlToSign, config, function signUrlCb(err, signedUrl) {
-		t.notOk(err, "Signs the URL");
-		t.ok(common.queryStringHasKeysValues(signedUrl, expectedQueryString), "URL is signed as expected");
+	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
+		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+		common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
 		t.end();
 	});
 });
