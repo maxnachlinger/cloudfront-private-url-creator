@@ -42,7 +42,7 @@ test('Canned policy works', function (t) {
 });
 
 test('RTMP Canned policy works', function (t) {
-	var resource = 'rtmp://s376mwn0j9d1pr.cloudfront.net/0.mp4';
+	var resource = 'rtmp://s376mwn0j9d1pr.cloudfront.net/cfx/st/0.mp4?test=value';
 
 	var config = {
 		privateKey: privateKey,
@@ -51,9 +51,9 @@ test('RTMP Canned policy works', function (t) {
 	};
 
 	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
-		console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~');
-      t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
-		t.ok(signedUrl, "Signs the submitted resource, received: " + util.inspect(signedUrl));
+		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+		t.ok(!!~signedUrl.indexOf("rtmp:"), "Preserves rtmp: protocol in signed URL");
 		t.end();
 	});
 });
