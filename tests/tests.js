@@ -70,7 +70,7 @@ test('Custom policy works', function (t) {
 });
 
 test('HTTP url tests', function (t) {
-	var resource = 'http://d604721fxaaqy9.cloudfront.net/some/path/horizon.jpg?large=yes&license=yes';
+	var resource = 'http://testdistro.cloudfront.net/some/path/horizon.jpg?large=yes&license=yes';
 
 	var config = {
 		privateKey: privateKey,
@@ -81,15 +81,13 @@ test('HTTP url tests', function (t) {
 	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
 		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
 		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
-		t.ok(~signedUrl.indexOf("http://"), "Preserves protocol in signed URL");
-		t.ok(~signedUrl.indexOf("?large=yes&license=yes"), "Preserves query string in signed URL");
-		t.ok(~signedUrl.indexOf("/some/path/"), "Preserves path in signed URL");
+		t.ok(~signedUrl.indexOf(resource), "Preserves original URL");
 		t.end();
 	});
 });
 
 test('RTMP url tests', function (t) {
-	var resource = 'rtmp://s376mwn0j9d1pr.cloudfront.net/cfx/st/0.mp4?test=value';
+	var resource = 'rtmp://testdistro.cloudfront.net/cfx/st/0.mp4??test=value';
 
 	var config = {
 		privateKey: privateKey,
@@ -100,9 +98,7 @@ test('RTMP url tests', function (t) {
 	cf.signUrl(resource, config, function signUrlCb(err, signedUrl) {
 		t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
 		t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
-		t.ok(~signedUrl.indexOf("rtmp://"), "Preserves protocol in signed URL");
-		t.ok(~signedUrl.indexOf("?test=value"), "Preserves query string in signed URL");
-		t.ok(~signedUrl.indexOf("/cfx/st/"), "Preserves path in signed URL");
+		t.ok(~signedUrl.indexOf(resource), "Preserves original URL");
 		t.end();
 	});
 });
