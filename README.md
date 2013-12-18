@@ -1,6 +1,6 @@
 #cloudfront-private-url-creator
 
-Creates and signs private Cloudfront Urls.
+Creates and signs private Cloudfront Urls (http:, https:, and rtmp:)
 
 [![Build Status](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator.png?branch=master)](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator)
 
