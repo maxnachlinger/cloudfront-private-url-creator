@@ -22,15 +22,7 @@
 		"test": "node tests/tests.js"
 	},
 	"main": "lib/",
-	"dependencies": {},
 	"devDependencies": {
 		"tap": "~0.4.0"
-	},
-	"optionalDependencies": {},
-	"engines": {
-		"node": "*"
-	},
-	"publishConfig": {
-		"registry": "https://registry.npmjs.com/"
 	}
 }
