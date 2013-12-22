@@ -8,7 +8,7 @@
 		"type": "git"
 	},
 	"keywords": ["cloudfront"],
-	"version": "1.0.47",
+	"version": "1.0.48",
 	"bugs": {
 		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
 	},

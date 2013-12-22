@@ -4,12 +4,12 @@ Creates and signs private Cloudfront Urls (http:, https:, and rtmp:)
 
 [![Build Status](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator.png?branch=master)](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator)
 
-## Installation:
+### Installation:
 ```
 npm install cloudfront-private-url-creator
 ```
 
-## Usage:
+### Usage:
 ```javascript
 var fs = require('fs');
 var cf = require('cloudfront-private-url-creator');
@@ -33,13 +33,7 @@ loadPrivateKey(function privateKeyCb(err,keyContents) {
     keyPairId: keyPairId,
     dateLessThan: dateLessThan
   };
-  cf.signUrl(urlToSign, config, function signUrlCb(err,signedUrl) {
-    if(err) {
-      console.error(err);
-      return;
-    }
-    console.log(signedUrl);
-  });
+  var signedUrl = cf.signUrl(urlToSign, config);
 });
 
 function loadPrivateKey(cb) {
@@ -53,7 +47,7 @@ function loadPrivateKey(cb) {
   });
 }
 ```
-## License
+### License
 
 [The MIT License](http://opensource.org/licenses/MIT)
 

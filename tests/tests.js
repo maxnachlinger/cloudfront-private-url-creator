@@ -86,6 +86,21 @@ test('HTTP url tests', function (t) {
 	});
 });
 
+test('HTTP url tests without signCb', function (t) {
+	var resource = 'http://testdistro.cloudfront.net/some/path/horizon.jpg?large=yes&license=yes';
+
+	var config = {
+		privateKey: privateKey,
+		keyPairId: 'PK12345EXAMPLE',
+		dateLessThan: new Date(Date.parse('Sun, 1 Jan 2012 00:00:00 GMT'))
+	};
+
+	var signedUrl = cf.signUrl(resource, config);
+	t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+	t.ok(~signedUrl.indexOf(resource), "Preserves original URL");
+	t.end();
+});
+
 test('RTMP url tests', function (t) {
 	var resource = 'rtmp://testdistro.cloudfront.net/cfx/st/0.mp4??test=value';
 
