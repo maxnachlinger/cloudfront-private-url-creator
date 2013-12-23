@@ -8,7 +8,6 @@ Creates and signs private Cloudfront Urls (http:, https:, and rtmp:)
 ```
 npm install cloudfront-private-url-creator
 ```
-
 ### Usage:
 ```javascript
 var fs = require('fs');
@@ -47,6 +46,10 @@ function loadPrivateKey(cb) {
   });
 }
 ```
+### Relevant AWS docs:
+[Creating a Signed URL Using a Canned Policy](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-canned-policy.html)
+
+[Creating a Signed URL Using a Custom Policy](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html)
 ### License
 
 [The MIT License](http://opensource.org/licenses/MIT)
