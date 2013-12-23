@@ -1,5 +1,8 @@
 {
-	"author": "Max Nachlinger <max.nachlinger@gmail.com>",
+	"author": {
+		"name": "Max Nachlinger",
+		"url": "https://github.com/maxnachlinger"
+	},
 	"name": "cloudfront-private-url-creator",
 	"description": "Creates private Cloudfront Urls",
 	"homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
@@ -12,12 +15,7 @@
 	"bugs": {
 		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
 	},
-	"contributors": [
-		"Max Nachlinger <max.nachlinger@gmail.com>"
-	],
-	"licenses": {
-		"type": "MIT"
-	},
+	"license": "ISC",
 	"scripts": {
 		"test": "node tests/tests.js"
 	},
