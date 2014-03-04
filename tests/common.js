@@ -31,6 +31,8 @@ common.loadPrivateKey = function (loadPrivateKeyCb) {
 common.queryStringHasKeysValues = function (t, url, keysValues) {
 	var queryStringKeysValues = querystring.parse(url.slice(url.indexOf('?') + 1));
 	for (var key in keysValues) {
-		t.equal(keysValues[key], queryStringKeysValues[key], key + " matches [" + queryStringKeysValues[key] + "]");
+		if (keysValues.hasOwnProperty(key)) {
+			t.equal(keysValues[key], queryStringKeysValues[key], key + " matches [" + queryStringKeysValues[key] + "]");
+		}
 	}
 };

@@ -10,8 +10,10 @@
 		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator.git",
 		"type": "git"
 	},
-	"keywords": ["cloudfront"],
-	"version": "1.0.49",
+	"keywords": [
+		"cloudfront"
+	],
+	"version": "1.0.50",
 	"bugs": {
 		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
 	},
@@ -21,6 +23,6 @@
 	},
 	"main": "lib/",
 	"devDependencies": {
-		"tap": "~0.4.0"
+		"tape": "~2.4.0"
 	}
 }
