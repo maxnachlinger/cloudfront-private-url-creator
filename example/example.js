@@ -1,6 +1,6 @@
 "use strict";
 var fs = require('fs');
-var cf = require('..');
+var cf = require('cloudfront-private-url-creator');
 
 var urlToSign = 'https://somedistro.cloudfront.net/somefolder/someFile';
 var keyPairId = 'yourKeyPaidId';
