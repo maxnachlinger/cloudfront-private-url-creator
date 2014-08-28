@@ -2,6 +2,8 @@
 
 Creates and signs private Cloudfront Urls (http:, https:, and rtmp:)
 
+[![NPM](https://nodei.co/npm/cloudfront-private-url-creator.png)](https://nodei.co/npm/cloudfront-private-url-creator/)
+
 [![Build Status](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator.png?branch=master)](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator)
 
 ### Installation:
