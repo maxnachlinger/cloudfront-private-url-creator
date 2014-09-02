@@ -1,6 +1,6 @@
 #cloudfront-private-url-creator
 
-Creates and signs private Cloudfront Urls (http:, https:, and rtmp:)
+Creates and signs private Cloudfront Urls (http:, https:, rtmp:, rtmpt:, rtmpe:, and rtmpte:)
 
 [![NPM](https://nodei.co/npm/cloudfront-private-url-creator.png)](https://nodei.co/npm/cloudfront-private-url-creator/)
 
