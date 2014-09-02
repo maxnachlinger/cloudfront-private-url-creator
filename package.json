@@ -13,7 +13,7 @@
 	"keywords": [
 		"cloudfront"
 	],
-	"version": "1.0.50",
+	"version": "1.0.51",
 	"bugs": {
 		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
 	},
