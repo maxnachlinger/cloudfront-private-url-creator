@@ -59,8 +59,6 @@ function loadPrivateKey(cb) {
 [Creating a Signed URL Using a Canned Policy](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-canned-policy.html)
 
 [Creating a Signed URL Using a Custom Policy](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html)
-### License
 
-[The MIT License](http://opensource.org/licenses/MIT)
-
-Copyright (c) 2013 Max Nachlinger
+## Contributors
+[Here's a list, thanks for your help!](https://github.com/maxnachlinger/cloudfront-private-url-creator/graphs/contributors)
