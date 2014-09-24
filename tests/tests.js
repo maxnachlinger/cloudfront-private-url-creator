@@ -35,8 +35,10 @@ test('A custom policy with a wildcard URL works', function (t) {
 	};
 
 	t.test("signUrl test", function(t) {
+		console.time("signUrl test");
 		cf.signUrl(resource, config, function (err, signedUrl) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("signUrl test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
 			common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
 			t.end();
@@ -44,8 +46,49 @@ test('A custom policy with a wildcard URL works', function (t) {
 	});
 
 	t.test("getSignatureQueryString test", function(t) {
+		console.time("getSignatureQueryString test");
 		cf.getSignatureQueryString(resource, config, function (err, signature) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("getSignatureQueryString test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
+			t.ok(signature, "Generates a signature for the submitted resource, received: " + signature);
+			common.queryStringHasKeysValues(t, signature, expectedQueryString);
+			t.end();
+		});
+	});
+});
+
+test('A custom policy with a wildcard URL works', function (t) {
+	var resource = util.format('https://%s/test/*', distro);
+
+	var config = {
+		privateKey: privateKey,
+		keyPairId: keyPairId,
+		dateLessThan: new Date(Date.parse('Thr, 1 Jan 2015 00:00:00 GMT')),
+		ipAddress: ipAddressToAllow
+	};
+
+	var expectedQueryString = {
+		'Policy': 'eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90ZXN0ZGlzdHJvLmNsb3VkZnJvbnQubmV0L3Rlc3QvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTQyMDA3MDQwMH0sIklwQWRkcmVzcyI6eyJBV1M6U291cmNlSXAiOiIxMC4wLjAuMS8zMiJ9fX1dfQ__',
+		'Signature': 'VY0hmU5wkB1a-KDWImjA~KriVkOIXlcWUYD4F0YZbMVSu-u8UaPUzc-jqyGTdeLi9qF6OHX0IPh2WphogcIVVA~8zTAeV8ceAo5uN5~-puxh0w8KaeBC2xK1qApO2TwxX1hKrS2-e0CJiwvsDZIPtFcABpEz9OJvmhz2WI1~h3A_',
+		'Key-Pair-Id': keyPairId
+	};
+
+	t.test("signUrl test", function(t) {
+		console.time("signUrl test");
+		cf.signUrl(resource, config, function (err, signedUrl) {
+			console.timeEnd("signUrl test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
+			t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
+			common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
+			t.end();
+		});
+	});
+
+	t.test("getSignatureQueryString test", function(t) {
+		console.time("getSignatureQueryString test");
+		cf.getSignatureQueryString(resource, config, function (err, signature) {
+			console.timeEnd("getSignatureQueryString test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signature, "Generates a signature for the submitted resource, received: " + signature);
 			common.queryStringHasKeysValues(t, signature, expectedQueryString);
 			t.end();
@@ -73,8 +116,10 @@ test('A canned policy works', function (t) {
 	};
 
 	t.test("signUrl test", function(t) {
+		console.time("signUrl test");
 		cf.signUrl(resource, config, function (err, signedUrl) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("signUrl test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
 			common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
 			t.end();
@@ -82,8 +127,10 @@ test('A canned policy works', function (t) {
 	});
 
 	t.test("getSignatureQueryString test", function(t) {
+		console.time("getSignatureQueryString test");
 		cf.getSignatureQueryString(resource, config, function (err, signature) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("getSignatureQueryString test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signature, "Generates a signature for the submitted resource, received: " + signature);
 			common.queryStringHasKeysValues(t, signature, expectedQueryString);
 			t.end();
@@ -112,8 +159,10 @@ test('A custom policy works', function (t) {
 	};
 
 	t.test("signUrl test", function(t) {
+		console.time("signUrl test");
 		cf.signUrl(resource, config, function (err, signedUrl) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("signUrl test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
 			common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
 			t.end();
@@ -121,8 +170,10 @@ test('A custom policy works', function (t) {
 	});
 
 	t.test("getSignatureQueryString test", function(t) {
+		console.time("getSignatureQueryString test");
 		cf.getSignatureQueryString(resource, config, function (err, signature) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("getSignatureQueryString test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signature, "Generates a signature for the submitted resource, received: " + signature);
 			common.queryStringHasKeysValues(t, signature, expectedQueryString);
 			t.end();
@@ -146,8 +197,10 @@ test('An RTMP url works', function (t) {
 	};
 
 	t.test("signUrl test", function(t) {
+		console.time("signUrl test");
 		cf.signUrl(resource, config, function (err, signedUrl) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("signUrl test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signedUrl, "Signs the submitted resource, received: " + signedUrl);
 			t.ok(~signedUrl.indexOf(resource), "Preserves original URL");
 			common.queryStringHasKeysValues(t, signedUrl, expectedQueryString);
@@ -156,8 +209,10 @@ test('An RTMP url works', function (t) {
 	});
 
 	t.test("getSignatureQueryString test", function(t) {
+		console.time("getSignatureQueryString test");
 		cf.getSignatureQueryString(resource, config, function (err, signature) {
-			t.notOk(err, "Signs the URL without error, received: " + util.inspect(err));
+			console.timeEnd("getSignatureQueryString test");
+			t.notOk(err, "Signs the URL without error, received: " + (err || {}).stack);
 			t.ok(signature, "Signs the submitted resource, received: " + signature);
 			common.queryStringHasKeysValues(t, signature, expectedQueryString);
 			t.end();
