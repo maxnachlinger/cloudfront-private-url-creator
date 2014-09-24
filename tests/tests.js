@@ -219,3 +219,20 @@ test('An RTMP url works', function (t) {
 		});
 	});
 });
+
+test('Can pass in existing signature query string', function (t) {
+	var resource = util.format('https://%s/test/*', distro);
+
+	var config = {
+		signatureQueryString: 'testquerystring'
+	};
+
+	console.time("signUrl test");
+	cf.signUrl(resource, config, function (err, signedUrl) {
+		console.timeEnd("signUrl test");
+		t.notOk(err, "Appends the URL with signature without error, received: " + (err || {}).stack);
+		t.ok(signedUrl, "Appends the submitted resource with signature, received: " + signedUrl);
+		t.ok(!!~signedUrl.indexOf(config.signatureQueryString), 'Contains our passed in query string');
+		t.end();
+	});
+});
