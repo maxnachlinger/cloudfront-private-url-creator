@@ -1,28 +1,28 @@
 {
-	"author": {
-		"name": "Max Nachlinger",
-		"url": "https://github.com/maxnachlinger"
-	},
-	"name": "cloudfront-private-url-creator",
-	"description": "Creates private Cloudfront Urls",
-	"homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
-	"repository": {
-		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator.git",
-		"type": "git"
-	},
-	"keywords": [
-		"cloudfront"
-	],
-	"version": "1.0.51",
-	"bugs": {
-		"url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
-	},
-	"license": "ISC",
-	"scripts": {
-		"test": "node tests/tests.js"
-	},
-	"main": "lib/",
-	"devDependencies": {
-		"tape": "~2.4.0"
-	}
+  "author": {
+    "name": "Max Nachlinger",
+    "url": "https://github.com/maxnachlinger"
+  },
+  "name": "cloudfront-private-url-creator",
+  "description": "Creates private Cloudfront Urls",
+  "homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxnachlinger/cloudfront-private-url-creator.git"
+  },
+  "keywords": [
+    "cloudfront"
+  ],
+  "version": "1.1.0",
+  "bugs": {
+    "url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
+  },
+  "license": "ISC",
+  "scripts": {
+    "test": "node tests/tests.js"
+  },
+  "main": "lib/",
+  "devDependencies": {
+    "tape": "^4.0.0"
+  }
 }
