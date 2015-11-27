@@ -1,6 +1,6 @@
 #cloudfront-private-url-creator
 
-Creates and signs private Cloudfront Urls (http:, https:, rtmp:, rtmpt:, rtmpe:, and rtmpte:)
+Creates and signs private Cloudfront Urls (``http:, https:, rtmp:, rtmpt:, rtmpe:, and rtmpte:``)
 
 [![NPM](https://nodei.co/npm/cloudfront-private-url-creator.png)](https://nodei.co/npm/cloudfront-private-url-creator/)
 
@@ -11,7 +11,7 @@ Creates and signs private Cloudfront Urls (http:, https:, rtmp:, rtmpt:, rtmpe:,
 npm install cloudfront-private-url-creator
 ```
 ### Note:
-Version ``2.0.0`` is for Node versions ``>4.0.0``. If you are using Node 0.10 - 0.12, please use version ``1.1.0``.
+Version ``2.0.0`` is for Node versions ``>4.0.0``. If you are using Node ``0.10 - 0.12``, please use version ``1.1.0``.
 
 ### Usage:
 ```javascript
