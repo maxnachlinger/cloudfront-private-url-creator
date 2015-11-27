@@ -1,38 +1,39 @@
-"use strict";
-var fs = require("fs");
-var path = require("path");
-var querystring = require("querystring");
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const querystring = require('querystring');
 
-var common = exports;
+const common = exports;
 
-var privateKeyPath = path.join(__dirname, "private-key.pem");
-var privateKey;
+const privateKeyPath = path.join(__dirname, 'private-key.pem');
+let privateKey;
 
 common.loadPrivateKey = function (loadPrivateKeyCb) {
-    if (privateKey) {
-        return loadPrivateKeyCb(null, privateKey);
+  if (privateKey) {
+    return loadPrivateKeyCb(null, privateKey);
+  }
+
+  fs.realpath(privateKeyPath, (err, resolvedPath) => {
+    if (err) {
+      return loadPrivateKeyCb(err);
     }
 
-    fs.realpath(privateKeyPath, function (err, resolvedPath) {
-        if (err) {
-            return loadPrivateKeyCb(err);
-        }
-
-        fs.readFile(resolvedPath, function (err, data) {
-            if (err) {
-                return loadPrivateKeyCb(err);
-            }
-            privateKey = data;
-            loadPrivateKeyCb(null, privateKey);
-        });
+    fs.readFile(resolvedPath, (err, data) => {
+      if (err) {
+        return loadPrivateKeyCb(err);
+      }
+      privateKey = data;
+      loadPrivateKeyCb(null, privateKey);
     });
+  });
 };
 
 common.queryStringHasKeysValues = function (t, url, keysValues) {
-    var queryStringKeysValues = querystring.parse(url.slice(url.indexOf("?") + 1));
-    for (var key in keysValues) {
-        if (keysValues.hasOwnProperty(key)) {
-            t.equal(keysValues[key], queryStringKeysValues[key], key + " matches [" + queryStringKeysValues[key] + "]");
-        }
+  const queryStringKeysValues = querystring.parse(url.slice(url.indexOf('?') + 1));
+
+  Object.keys(keysValues).forEach(key => {
+    if (keysValues.hasOwnProperty(key)) {
+      t.equal(keysValues[key], queryStringKeysValues[key], key + ' matches [' + queryStringKeysValues[key] + ']');
     }
+  });
 };

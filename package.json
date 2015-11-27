@@ -3,6 +3,10 @@
     "name": "Max Nachlinger",
     "url": "https://github.com/maxnachlinger"
   },
+  "engineStrict": true,
+  "engines": {
+    "node": ">4.0.0"
+  },
   "name": "cloudfront-private-url-creator",
   "description": "Creates private Cloudfront Urls",
   "homepage": "https://github.com/maxnachlinger/cloudfront-private-url-creator",
@@ -13,7 +17,7 @@
   "keywords": [
     "cloudfront"
   ],
-  "version": "1.1.0",
+  "version": "2.0.0",
   "bugs": {
     "url": "https://github.com/maxnachlinger/cloudfront-private-url-creator/issues"
   },
@@ -23,6 +27,6 @@
   },
   "main": "lib/",
   "devDependencies": {
-    "tape": "^4.0.0"
+    "tape": "4.2.2"
   }
 }

@@ -1,29 +1,29 @@
-"use strict";
-var fs = require("fs");
-var cf = require("cloudfront-private-url-creator");
+'use strict';
+const fs = require('fs');
+const cf = require('cloudfront-private-url-creator');
 
-var urlToSign = "https://somedistro.cloudfront.net/somefolder/someFile";
-var keyPairId = "yourKeyPaidId";
-var privateKeyPath = "./yourKey.pem";
+const urlToSign = 'https://somedistro.cloudfront.net/somefolder/someFile';
+const keyPairId = 'yourKeyPaidId';
+const privateKeyPath = './yourKey.pem';
 
 // date when the private url will expire (1 hour from now in this case)
-var dateLessThan = new Date();
+const dateLessThan = new Date();
 dateLessThan.setHours(dateLessThan.getHours() + 1);
 
-loadPrivateKey(function privateKeyCb(err, keyContents) {
+loadPrivateKey((err, keyContents) => {
     if (err) {
         console.error(err);
         return;
     }
-    var config = {
+    const config = {
         privateKey: keyContents,
         keyPairId: keyPairId,
         dateLessThan: dateLessThan
     };
     // sign the url and return it, or just get the signature
-    var signatureQueryString = cf.getSignatureQueryString(urlToSign, config);
+    const signatureQueryString = cf.getSignatureQueryString(urlToSign, config);
     // OR
-    var signedUrl = cf.signUrl(urlToSign, config);
+    const signedUrl = cf.signUrl(urlToSign, config);
 });
 
 function loadPrivateKey(cb) {
