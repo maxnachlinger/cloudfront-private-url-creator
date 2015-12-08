@@ -27,12 +27,12 @@ loadPrivateKey((err, keyContents) => {
 });
 
 function loadPrivateKey(cb) {
-  fs.realpath(privateKeyPath, function (err, resolvedPath) {
+  fs.realpath(privateKeyPath, (err, resolvedPath) => {
     if (err) {
       return cb(err);
     }
 
-    fs.readFile(resolvedPath, function (err, data) {
+    fs.readFile(resolvedPath, (err, data) => {
       if (err) {
         return cb(err);
       }
