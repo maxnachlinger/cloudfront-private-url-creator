@@ -2,9 +2,19 @@
 
 Creates and signs private Cloudfront Urls (``http:, https:, rtmp:, rtmpt:, rtmpe:, and rtmpte:``)
 
-[![NPM](https://nodei.co/npm/cloudfront-private-url-creator.png?downloads=true)](https://nodei.co/npm/cloudfront-private-url-creator/)
+[![travis][travis-image]][travis-url]
+[![npm][npm-image]][npm-url]
+[![downloads][downloads-image]][downloads-url]
+[![standard][standard-image]][standard-url]
 
-[![Build Status](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator.svg?branch=master)](https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator)
+[travis-image]: https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator.svg?branch=master
+[travis-url]: https://travis-ci.org/maxnachlinger/cloudfront-private-url-creator
+[npm-image]: https://img.shields.io/npm/v/cloudfront-private-url-creator.svg?style=flat
+[npm-url]: https://npmjs.org/package/cloudfront-private-url-creator
+[downloads-image]: https://img.shields.io/npm/dm/cloudfront-private-url-creator.svg?style=flat
+[downloads-url]: https://npmjs.org/package/cloudfront-private-url-creator
+[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
+[standard-url]: http://standardjs.com/
 
 ### Installation:
 ```
@@ -15,47 +25,47 @@ Version ``2.0.0`` is for Node versions ``>4.0.0``. If you are using Node ``0.10 
 
 ### Usage:
 ```javascript
-'use strict';
-const fs = require('fs');
-const cf = require('cloudfront-private-url-creator');
+'use strict'
+const fs = require('fs')
+const cf = require('cloudfront-private-url-creator')
 
-const urlToSign = 'https://somedistro.cloudfront.net/somefolder/someFile';
-const keyPairId = 'yourKeyPaidId';
-const privateKeyPath = './yourKey.pem';
+const urlToSign = 'https://somedistro.cloudfront.net/somefolder/someFile'
+const keyPairId = 'yourKeyPaidId'
+const privateKeyPath = './yourKey.pem'
 
 // date when the private url will expire (1 hour from now in this case)
-const dateLessThan = new Date();
-dateLessThan.setHours(dateLessThan.getHours() + 1);
+const dateLessThan = new Date()
+dateLessThan.setHours(dateLessThan.getHours() + 1)
 
 loadPrivateKey((err, keyContents) => {
     if (err) {
-        console.error(err);
-        return;
+        console.error(err)
+        return
     }
     const config = {
         privateKey: keyContents,
         keyPairId: keyPairId,
         dateLessThan: dateLessThan
-    };
+    }
     // sign the url and return it, or just get the signature
-    const signatureQueryString = cf.getSignatureQueryString(urlToSign, config);
+    const signatureQueryString = cf.getSignatureQueryString(urlToSign, config)
     // OR
-    const signedUrl = cf.signUrl(urlToSign, config);
-});
+    const signedUrl = cf.signUrl(urlToSign, config)
+})
 
 function loadPrivateKey(cb) {
     fs.realpath(privateKeyPath, (err, resolvedPath) => {
         if (err) {
-            return cb(err);
+            return cb(err)
         }
 
         fs.readFile(resolvedPath, (err, data) => {
             if (err) {
-                return cb(err);
+                return cb(err)
             }
-            cb(null, data);
-        });
-    });
+            cb(null, data)
+        })
+    })
 }
 ```
 ### Relevant AWS docs:
