@@ -26,7 +26,7 @@ loadPrivateKey((err, keyContents) => {
   cf.signUrl(urlToSign, config)
 })
 
-function loadPrivateKey(cb) {
+function loadPrivateKey (cb) {
   fs.realpath(privateKeyPath, (err, resolvedPath) => {
     if (err) {
       return cb(err)
