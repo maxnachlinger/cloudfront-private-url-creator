@@ -18,10 +18,10 @@ Creates and signs private Cloudfront Urls (``http:, https:, rtmp:, rtmpt:, rtmpe
 
 ### Installation:
 ```
-npm install cloudfront-private-url-creator
+npm i cloudfront-private-url-creator
 ```
 ### Note:
-Version ``2.0.0`` is for Node versions ``>4.0.0``. If you are using Node ``0.10 - 0.12``, please use version ``1.1.0``.
+If you are using Node ``0.10 - 0.12``, please use version ``1.1.0``.
 
 ### Usage:
 ```javascript
@@ -37,36 +37,17 @@ const privateKeyPath = './yourKey.pem'
 const dateLessThan = new Date()
 dateLessThan.setHours(dateLessThan.getHours() + 1)
 
-loadPrivateKey((err, keyContents) => {
-    if (err) {
-        console.error(err)
-        return
-    }
-    const config = {
-        privateKey: keyContents,
-        keyPairId: keyPairId,
-        dateLessThan: dateLessThan
-    }
-    // sign the url and return it, or just get the signature
-    const signatureQueryString = cf.getSignatureQueryString(urlToSign, config)
-    // OR
-    const signedUrl = cf.signUrl(urlToSign, config)
-})
+const keyContents = fs.readFileSync(privateKeyPath)
 
-function loadPrivateKey(cb) {
-    fs.realpath(privateKeyPath, (err, resolvedPath) => {
-        if (err) {
-            return cb(err)
-        }
-
-        fs.readFile(resolvedPath, (err, data) => {
-            if (err) {
-                return cb(err)
-            }
-            cb(null, data)
-        })
-    })
+const config = {
+    privateKey: keyContents,
+    keyPairId: keyPairId,
+    dateLessThan: dateLessThan
 }
+// sign the url and return it, or just get the signature
+const signatureQueryString = cf.getSignatureQueryString(urlToSign, config)
+// OR
+const signedUrl = cf.signUrl(urlToSign, config)
 ```
 ### Relevant AWS docs:
 [Creating a Signed URL Using a Canned Policy](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-canned-policy.html)
