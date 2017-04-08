@@ -1,4 +1,4 @@
-#cloudfront-private-url-creator
+# cloudfront-private-url-creator
 
 Creates and signs private Cloudfront Urls (``http:, https:, rtmp:, rtmpt:, rtmpe:, and rtmpte:``)
 
