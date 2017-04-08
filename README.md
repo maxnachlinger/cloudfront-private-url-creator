@@ -37,12 +37,12 @@ const privateKeyPath = './yourKey.pem'
 const dateLessThan = new Date()
 dateLessThan.setHours(dateLessThan.getHours() + 1)
 
-const keyContents = fs.readFileSync(privateKeyPath)
+const privateKey = fs.readFileSync(privateKeyPath)
 
 const config = {
-    privateKey: keyContents,
-    keyPairId: keyPairId,
-    dateLessThan: dateLessThan
+  privateKey,
+  keyPairId,
+  dateLessThan
 }
 // sign the url and return it, or just get the signature
 const signatureQueryString = cf.getSignatureQueryString(urlToSign, config)
