@@ -22,11 +22,16 @@
   },
   "license": "ISC",
   "scripts": {
-    "test": "./node_modules/.bin/standard && node tests/tests.js"
+    "pretest": "./node_modules/.bin/standard --verbose | ./node_modules/.bin/snazzy",
+    "test": "node tests/tests.js"
   },
   "main": "lib/",
   "devDependencies": {
-    "standard": "^9.0.0",
-    "tape": "^4.6.0"
+    "snazzy": "7.0.0",
+    "standard": "10.0.1",
+    "tape": "4.6.3"
+  },
+  "dependencies": {
+    "safe-buffer": "5.0.1"
   }
 }
