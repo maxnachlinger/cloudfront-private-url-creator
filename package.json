@@ -32,6 +32,6 @@
     "tape": "4.6.3"
   },
   "dependencies": {
-    "safe-buffer": "5.1.0"
+    "safe-buffer": "5.1.1"
   }
 }
