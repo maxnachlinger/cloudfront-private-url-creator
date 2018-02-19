@@ -29,7 +29,7 @@
   "devDependencies": {
     "snazzy": "7.0.0",
     "standard": "10.0.3",
-    "tape": "4.7.0"
+    "tape": "4.9.0"
   },
   "dependencies": {
     "safe-buffer": "5.1.1"
