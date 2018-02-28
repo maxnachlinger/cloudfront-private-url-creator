@@ -27,7 +27,7 @@
   },
   "main": "lib/",
   "devDependencies": {
-    "snazzy": "7.0.0",
+    "snazzy": "7.1.0",
     "standard": "10.0.3",
     "tape": "4.7.0"
   },
