@@ -28,8 +28,8 @@
   "main": "lib/",
   "devDependencies": {
     "snazzy": "7.1.0",
-    "standard": "10.0.3",
-    "tape": "4.7.0"
+    "standard": "11.0.0",
+    "tape": "4.8.0"
   },
   "dependencies": {
     "safe-buffer": "5.1.1"
